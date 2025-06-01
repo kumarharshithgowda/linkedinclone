@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Internship Listings</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; padding: 20px; margin: 0;">
+
+  <!-- Navbar from Jobs page -->
+  <nav class="bg-white shadow px-6 py-4 flex justify-between items-center mb-8">
+    <h1 class="text-2xl font-bold text-blue-700">SkillVista</h1>
+    <div class="space-x-4">
+      <a href="/profile" class="text-gray-700 hover:text-blue-700">Profile</a>
+      <a href="/jobs" class="text-gray-700 hover:text-blue-700">Jobs</a>
+      <a href="/internships" class="text-blue-700 font-semibold">Internships</a>
+      <a href="/skills" class="text-gray-700 hover:text-blue-700">Skill Test</a>
+    </div>
+  </nav>
+
+  <h1 style="text-align: center; color: #333;">Available Internships</h1>
+
+  <% if (internships.length === 0) { %>
+    <p style="text-align: center; color: #777;">No internships found.</p>
+  <% } else { %>
+    <ul style="list-style: none; padding: 0;">
+      <% internships.forEach(intern => { %>
+        <li style="background-color: #fff; border-radius: 10px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+          <h2 style="margin: 0 0 10px 0; color: #2c3e50;"><%= intern.title %></h2>
+          <p style="margin: 5px 0;"><strong>Company:</strong> <%= intern.company %></p>
+          <p style="margin: 5px 0;"><strong>Location:</strong> <%= intern.location %></p>
+          <p style="margin: 5px 0;"><strong>Posted:</strong> <%= new Date(intern.posted_date).toDateString() %></p>
+          <p style="margin-top: 10px; color: #555;"><%= intern.description %></p>
+
+          <!-- Apply Now Button -->
+          <a href="<%= intern.link || '#' %>" target="_blank" rel="noopener noreferrer"
+             style="display: inline-block; margin-top: 15px; padding: 10px 20px; background-color: #3498db; color: white; text-decoration: none; border-radius: 5px; font-weight: bold;">
+            Apply Now
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+</body>
+</html>
